@@ -54,11 +54,6 @@
         section { padding: 100px 10%; min-height: 100vh; }
         h2 { font-size: 2.5rem; margin-bottom: 2rem; }
 
-        /* About Section */
-        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .about-image img { width: 100%; border-radius: 20px; border: 1px solid #333; }
-        .about-text p { margin-bottom: 1.5rem; color: #ccc; font-size: 1.1rem; }
-
         /* Projects Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .card { background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid #222; transition: 0.3s; cursor: pointer; }
@@ -66,101 +61,115 @@
         .card-img { width: 100%; height: 220px; object-fit: cover; }
         .card-content { padding: 1.5rem; }
 
-        /* Contact Section Grid */
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); display: none; 
+            justify-content: center; align-items: center; z-index: 1000;
+            backdrop-filter: blur(10px); padding: 20px;
+        }
+        .modal-content {
+            background: #000; width: 95%; max-width: 1200px; height: 90vh;
+            border-radius: 15px; position: relative; overflow: hidden; border: 1px solid #333;
+            animation: modalFade 0.3s ease-out;
+        }
+        @keyframes modalFade { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .close-modal { 
+            position: absolute; top: 15px; right: 25px; font-size: 3rem; color: #fff; 
+            cursor: pointer; z-index: 1001; line-height: 1; transition: 0.2s;
+        }
+        .close-modal:hover { color: var(--accent); }
+        .modal-body { height: 100%; width: 100%; }
+
+        /* Contact Section */
         .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
         input, textarea { 
             width: 100%; padding: 15px; margin-bottom: 15px; background: #000; 
             border: 1px solid #333; color: #fff; border-radius: 8px; font-family: inherit;
         }
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-
         .labeled-icons { list-style: none; }
         .labeled-icons li { margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 15px; }
         .labeled-icons i { color: var(--accent); font-size: 1.5rem; margin-top: 5px; }
-        .labeled-icons h3 { font-size: 1.1rem; margin-bottom: 5px; }
-        .labeled-icons a { color: var(--text); text-decoration: none; }
 
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); display: none; 
-            justify-content: center; align-items: center; z-index: 1000;
-            backdrop-filter: blur(5px); padding: 20px;
+        /* Footer Correction */
+        footer { 
+            padding: 5rem 10% 3rem; 
+            background: #050505; 
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
         }
-        .modal-content {
-            background: var(--surface); max-width: 800px; width: 100%; max-height: 90vh;
-            border-radius: 20px; position: relative; overflow-y: auto; border: 1px solid #333;
-            animation: modalFade 0.4s ease-out;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        @keyframes modalFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: white; cursor: pointer; line-height: 1;}
-        .modal-body { padding: 40px; }
-        .modal-body img { width: 100%; border-radius: 12px; margin-bottom: 20px; }
-
-        /* Footer */
-        footer { padding: 4rem 10%; background: #050505; text-align: center; border-top: 1px solid #222; }
-        .icons { list-style: none; display: flex; justify-content: center; gap: 25px; margin-bottom: 1.5rem; }
-        .icons a { color: var(--text); font-size: 1.6rem; transition: 0.3s; }
-        .icons a:hover { color: var(--accent); transform: scale(1.2); }
-        .copyright { list-style: none; display: flex; justify-content: center; align-items: center; gap: 15px; color: var(--muted); font-size: 0.9rem; flex-wrap: wrap; }
-        .copyright a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        .footer-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-bottom: 2.5rem; 
+            list-style: none;
+        }
+        .footer-icons a { 
+            color: var(--text); 
+            font-size: 1.8rem; 
+            transition: all 0.3s ease; 
+        }
+        .footer-icons a:hover { 
+            color: var(--accent); 
+            transform: translateY(-5px); 
+        }
+        .footer-bottom {
+            border-top: 1px solid #1a1a1a;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+        }
+        .footer-bottom a { color: var(--accent); text-decoration: none; font-weight: 600; }
 
         @media (max-width: 992px) {
-            .about-container, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .about-image { order: -1; }
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo"><strong>MY PORTFOLIO.</strong></div>
+        <div class="logo"><strong>YESSER.</strong></div>
         <div>
             <a href="#home">Home</a>
-            <a href="#about">About</a>
             <a href="#projects">Work</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header id="home" class="hero">
-        <img src="images\avatar.png" alt="Yesser Barkallah" class="profile-img">
+        <img src="images/avatar.png" alt="Yesser Barkallah" class="profile-img">
         <h1>Hi, I'm <span>Yesser.</span></h1>
-        <p>A Creative Freelancer from Tunisia building high-end digital experiences and modern web solutions.</p>
+        <p>Graphic Designer | Web Developer | Project Manager | Entrepreneurship Trainer</p>
         <a href="#projects" class="btn">Explore Work</a>
     </header>
-
-    <section id="about">
-        <div class="about-container">
-            <div class="about-text">
-                <h2>The Person Behind the Pixels</h2>
-                <p>I am a dedicated developer and designer based in Tunisia. My journey started with a passion for clean aesthetics and logical problem solving.</p>
-                <p>I specialize in <strong>Web Development, Graphic designing, and project managment & entrepreneurship training.</strong></p>
-                <div style="margin-top: 20px;">
-                    <a href="#contact" class="btn" style="background: transparent; border: 1px solid var(--accent);">Hire Me</a>
-                </div>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800" alt="Work Setup">
-            </div>
-        </div>
-    </section>
 
     <section id="projects" style="background: #0d0d0d;">
         <h2>Recent Projects</h2>
         <div class="grid">
-            <div class="card" onclick="openModal('project1')">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" class="card-img">
+            <div class="card" onclick="openPDF('1.pdf')">
+                <img src="project1-thumbnail.jpg" class="card-img" alt="Project 1">
                 <div class="card-content">
-                    <h3>Project Alpha</h3>
-                    <p style="color:var(--muted)">Modern UI Exploration. Click to open.</p>
+                    <h3>Brand Identity Portfolio</h3>
+                    <p style="color:var(--muted)">Visual identity & Strategy (PDF)</p>
                 </div>
             </div>
-            <div class="card" onclick="openModal('project2')">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" class="card-img">
+
+            <div class="card" onclick="openPDF('2.pdf')">
+                <img src="project2-thumbnail.jpg" class="card-img" alt="Project 2">
                 <div class="card-content">
-                    <h3>Project Beta</h3>
-                    <p style="color:var(--muted)">Clean E-commerce Concept. Click to open.</p>
+                    <h3>Entrepreneurship Guide</h3>
+                    <p style="color:var(--muted)">Training Materials & Logic (PDF)</p>
                 </div>
             </div>
         </div>
@@ -178,7 +187,7 @@
         <div class="contact-grid">
             <div class="form-area">
                 <form action="https://formspree.io/f/xdapnzbe" method="POST">
-                    <input type="email" name="email" placeholder="Your Email" required />
+                    <input type="email" name="_replyto" placeholder="Your Email" required />
                     <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
@@ -196,7 +205,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <a href="mailto:barkallahyesser7@gmail.com">barkallahyesser7@gmail.com</a>
+                            <a href="mailto:barkallahyesser7@gmail.com" style="color: inherit; text-decoration: none;">barkallahyesser7@gmail.com</a>
                         </div>
                     </li>
                 </ul>
@@ -205,56 +214,51 @@
     </section>
 
     <footer>
-        <div class="inner">
-            <ul class="icons">
+        <div class="footer-content">
+            <ul class="footer-icons">
                 <li><a href="http://instagram.com/im_the_go4t" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                 <li><a href="https://www.facebook.com/yesser.barkallah.2025/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
                 <li><a href="https://www.linkedin.com/in/yesser-barkallah/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
                 <li><a href="https://discord.gg/49XBVKFS" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
                 <li><a href="https://x.com/astrafawn" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
             </ul>
-            <ul class="copyright">
-                <li>&copy; 2026 All rights reserved</li>
-                <li style="color: #333;">|</li>
-                <li>Design: <a href="https://tunisiefreelance.tn/profile/69c1f3e8e1bc4b1bbb8c084b" target="_blank">Yesser Barkallah</a></li>
-            </ul>
+            <div class="footer-bottom">
+                <span>&copy; 2026 All rights reserved</span>
+                <span style="color: #333;">|</span>
+                <span>Created by <a href="#">Yesser Barkallah</a></span>
+            </div>
         </div>
     </footer>
 
     <script>
-        const projectData = {
-            project1: {
-                title: "Project Alpha",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
-                description: "This project focused on data visualization for financial applications. I used a dark aesthetic to emphasize high-contrast charts.",
-                link: "#"
-            },
-            project2: {
-                title: "Project Beta",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
-                description: "A luxury e-commerce prototype built for minimalist brands. This design emphasizes whitespace and high-quality photography.",
-                link: "#"
-            }
-        };
-
-        function openModal(projectId) {
+        function openPDF(pdfPath) {
             const modal = document.getElementById('projectModal');
             const body = document.getElementById('modalBody');
-            const data = projectData[projectId];
+            
+            // Note: #toolbar=0 hides the download/print bar in many browsers
             body.innerHTML = `
-                <img src="${data.image}" alt="${data.title}">
-                <h2>${data.title}</h2>
-                <p style="color: var(--muted); margin-bottom: 20px;">${data.description}</p>
-                <a href="${data.link}" class="btn">View Live Project</a>
+                <iframe src="${pdfPath}#toolbar=0" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:none;">
+                </iframe>
             `;
+            
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(event) {
-            document.getElementById('projectModal').style.display = 'none';
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            document.getElementById('modalBody').innerHTML = ''; // Reset iframe
         }
+
+        // Close modal when pressing 'Esc' key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
+        });
     </script>
 </body>
 </html>
